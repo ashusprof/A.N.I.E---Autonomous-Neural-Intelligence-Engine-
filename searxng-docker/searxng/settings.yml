@@ -1,0 +1,15 @@
+use_default_settings: true
+
+server:
+  secret_key: "a8f9d0c4-7b2a-4f3d-9f8b-123456abcdef"
+  limiter: false
+  image_proxy: true
+  access_control: false  # <-- Changed to false
+
+search:
+  formats:
+    - html
+    - json  # <-- Add this to enable JSON
+
+redis:
+  url: redis://redis:6379/0

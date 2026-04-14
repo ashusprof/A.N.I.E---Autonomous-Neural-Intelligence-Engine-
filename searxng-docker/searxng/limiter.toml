@@ -1,0 +1,16 @@
+# This configuration file updates the default configuration file
+# See https://github.com/searxng/searxng/blob/master/searx/limiter.toml
+
+[botdetection.ip_limit]
+# activate advanced bot protection
+# enable this when running the instance for a public usage on the internet
+link_token = false
+filter_link_local = false  # <-- Add this to allow local network
+
+[botdetection.ip_lists]
+# Allow localhost and local networks
+pass_ip = [
+    '127.0.0.1',      # localhost IPv4
+    '::1',            # localhost IPv6
+    '127.0.0.0/8',    # local network
+]

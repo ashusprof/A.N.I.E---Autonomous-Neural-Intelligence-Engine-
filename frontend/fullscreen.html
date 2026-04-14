@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="description" content="ANIE - Your Premium AI Assistant for intelligent conversations" />
+  <meta name="theme-color" content="#7c3aed" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0a0a0b" media="(prefers-color-scheme: dark)" />
+  <title>ANIE Assistant</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles-fullscreen.css" />
+  <script src="https://cdn.jsdelivr.net/npm/marked@11.1.1/marked.min.js"></script>
+</head>
+
+<body>
+  <!-- Main Container -->
+  <div class="app-container" role="application" aria-label="ANIE Chat Application">
+    <!-- Main Content -->
+    <main class="main-content" role="main">
+      <!-- Header -->
+      <header class="main-header" role="banner">
+        <div class="header-left">
+          <div class="logo-section">
+            <img src="anie.png" alt="ANIE Logo" class="logo-img" />
+            <span class="logo-text">ANIE</span>
+          </div>
+        </div>
+        <div class="header-right">
+          <button class="new-chat-btn-header" id="new-chat-btn" aria-label="Start a new conversation">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M8 3v10M3 8h10" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+            </svg>
+            <span>New Chat</span>
+          </button>
+        </div>
+      </header>
+
+      <!-- Chat Area -->
+      <div class="chat-area" id="chat-area" role="log" aria-live="polite" aria-label="Chat messages">
+        <!-- Welcome Screen -->
+        <div class="welcome-screen" id="welcome-screen" role="status">
+          <div class="welcome-logo">
+            <img src="anie.png" alt="" class="welcome-logo-img" aria-hidden="true" />
+          </div>
+          <h1 class="welcome-title">Ready to Create Something New?</h1>
+          <p class="welcome-subtitle">I'm here to help you with anything. Ask me a question to get started.</p>
+        </div>
+
+        <!-- Chat Messages Container -->
+        <div class="messages-container" id="messages-container" style="display: none;" role="list">
+          <!-- Messages will be added here dynamically -->
+        </div>
+      </div>
+
+      <!-- Input Area -->
+      <div class="input-area" id="input-area">
+        <div class="input-wrapper">
+          <label for="message-input" class="sr-only">Type your message</label>
+          <input type="text" id="message-input" class="message-input" placeholder="Ask anything..." autocomplete="off"
+            aria-label="Message input" />
+          <button class="send-btn" id="send-btn" aria-label="Send message" type="button">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+              <path d="M17 10L3 3l3 7-3 7 14-7z" fill="currentColor" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    // Configure marked to open links in new tab
+    if (typeof marked !== 'undefined') {
+      marked.setOptions({
+        breaks: true,
+        gfm: true
+      });
+
+      const renderer = new marked.Renderer();
+      const originalLink = renderer.link;
+      renderer.link = function (href, title, text) {
+        const link = originalLink.call(this, href, title, text);
+        return link.replace('<a', '<a target="_blank" rel="noopener noreferrer"');
+      };
+      marked.use({ renderer });
+    }
+  </script>
+  <script src="app-fullscreen.js"></script>
+</body>
+
+</html>
